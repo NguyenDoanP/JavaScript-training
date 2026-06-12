@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "element-case": "off",
+    "void-style": "off"
+  }
+}
