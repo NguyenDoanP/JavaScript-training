@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>About Me</title>
+
+    <style>
+      .listitem {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>About Me</h1>
+
+    <ul>
+      <li>Nickname: <span id="nickname"></span></li>
+      <li>Favorites: <span id="favorites"></span></li>
+      <li>Hometown: <span id="hometown"></span></li>
+    </ul>
+
+    <script>
+      // Set the font of the page
+      document.body.style.fontFamily = "Arial, sans-serif";
+
+      // Select the span elements
+      const nicknameElement = document.getElementById("nickname");
+      const favoritesElement = document.getElementById("favorites");
+      const hometownElement = document.getElementById("hometown");
+
+      // Set values
+      nicknameElement.textContent = "Nguyen";
+      favoritesElement.textContent = "Coffee, Music";
+      hometownElement.textContent = "Quang Tri";
+
+      // Select all li elements
+      const listItems = document.querySelectorAll("li");
+
+      // Set the class of each li element
+      for (const item of listItems) {
+        item.className = "listitem";
+      }
+
+      // Create a new image element
+      const img = document.createElement("img");
+
+      // Set image attributes
+      img.src =
+        "https://w7.pngwing.com/pngs/895/199/png-transparent-spider-man-heroes-download-with-transparent-background-free-thumbnail.png";
+      img.alt = "My picture";
+      img.width = 200;
+
+      // Append the image to the page
+      document.body.appendChild(img);
+
+      // Get values from the elements
+      const nickname = nicknameElement.textContent;
+      const favorites = favoritesElement.textContent;
+      const hometown = hometownElement.textContent;
+      const imageSource = img.src;
+
+      // Display the values in the console
+      console.log("Nickname:", nickname);
+      console.log("Favorites:", favorites);
+      console.log("Hometown:", hometown);
+      console.log("Image source:", imageSource);
+    </script>
+  </body>
+</html>
