@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Insert Row in a Table</title>
+
+    <style>
+      .new-row {
+        background-color: lightyellow;
+      }
+    </style>
+  </head>
+
+  <body>
+    <table id="sampleTable" border="1">
+      <tr>
+        <td>Row1 cell1</td>
+        <td>Row1 cell2</td>
+      </tr>
+      <tr>
+        <td>Row2 cell1</td>
+        <td>Row2 cell2</td>
+      </tr>
+    </table>
+
+    <br />
+
+    <button id="insertRowButton">Insert Row</button>
+
+    <script>
+      const insertRowButton = document.getElementById("insertRowButton");
+
+      insertRowButton.addEventListener("click", handleInsertRowButtonClick);
+
+      function handleInsertRowButtonClick() {
+        const table = document.getElementById("sampleTable");
+
+        const rowCount = table.rows.length;
+
+        const newRow = table.insertRow();
+
+        newRow.classList.add("new-row");
+
+        const firstCell = newRow.insertCell();
+        const secondCell = newRow.insertCell();
+
+        firstCell.textContent = `Row${rowCount + 1} cell1`;
+        secondCell.textContent = `Row${rowCount + 1} cell2`;
+
+        newRow.style.color = "navy";
+        newRow.style.fontFamily = "Arial, sans-serif";
+      }
+    </script>
+  </body>
+</html>
