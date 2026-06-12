@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Get Link Attributes</title>
+
+    <style>
+      .highlight {
+        background-color: lightyellow;
+        border: 2px solid orange;
+        padding: 10px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>
+      <a
+        id="w3r"
+        type="text/html"
+        hreflang="en-us"
+        rel="nofollow"
+        target="_self"
+        href="https://www.w3resource.com/"
+      >
+        w3resource
+      </a>
+    </p>
+
+    <button id="attributeButton">Click here to get attributes value</button>
+
+    <div id="result"></div>
+
+    <script>
+      const attributeButton = document.getElementById("attributeButton");
+
+      attributeButton.addEventListener("click", handleAttributeButtonClick);
+
+      function handleAttributeButtonClick() {
+        const link = document.getElementById("w3r");
+
+        const href = link.getAttribute("href");
+        const hreflang = link.getAttribute("hreflang");
+        const rel = link.getAttribute("rel");
+        const target = link.getAttribute("target");
+        const type = link.getAttribute("type");
+
+        const result = document.getElementById("result");
+
+        result.classList.add("highlight");
+
+        result.style.fontFamily = "Arial, sans-serif";
+        result.style.color = "red";
+
+        result.innerHTML = `
+          <p>href: ${href}</p>
+          <p>hreflang: ${hreflang}</p>
+          <p>rel: ${rel}</p>
+          <p>target: ${target}</p>
+          <p>type: ${type}</p>
+        `;
+      }
+    </script>
+  </body>
+</html>
