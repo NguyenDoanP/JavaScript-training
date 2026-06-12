@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Return first and last name from a form</title>
+
+    <style>
+      .submitted {
+        background-color: lightgreen;
+        border: 2px solid green;
+        padding: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form id="form1" onsubmit="getFormvalue(event)">
+      First name:
+      <input type="text" name="fname" value="David" />
+      <br />
+
+      Last name:
+      <input type="text" name="lname" value="Beckham" />
+      <br />
+
+      <input type="submit" value="Submit" />
+    </form>
+
+    <p id="result"></p>
+
+    <script>
+      function getFormvalue(event) {
+        event.preventDefault();
+
+        const form = document.getElementById("form1");
+
+        const firstName = form.elements["fname"].value;
+        const lastName = form.elements["lname"].value;
+
+        const result = document.getElementById("result");
+
+        result.textContent = `First Name: ${firstName}, Last Name: ${lastName}`;
+
+        result.classList.add("submitted");
+
+        result.style.color = "blue";
+        result.style.fontSize = "20px";
+        result.style.fontFamily = "Arial, sans-serif";
+      }
+    </script>
+  </body>
+</html>
