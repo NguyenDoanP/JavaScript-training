@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <style>
+      body {
+        margin: 30px;
+      }
+
+      .highlight {
+        border: 2px solid orange;
+        background-color: lightyellow;
+      }
+    </style>
+
+    <title>Count and Display Items of a Dropdown List</title>
+  </head>
+
+  <body>
+    <form>
+      Select your favorite Color :
+
+      <select id="mySelect">
+        <option>Red</option>
+        <option>Green</option>
+        <option>Blue</option>
+        <option>White</option>
+      </select>
+
+      <button type="button" id="countButton">Count and Output all Items</button>
+    </form>
+
+    <script>
+      const countButton = document.getElementById("countButton");
+
+      countButton.addEventListener("click", handleCountButtonClick);
+
+      function handleCountButtonClick() {
+        const dropdown = document.getElementById("mySelect");
+
+        const options = dropdown.options;
+
+        const itemCount = options.length;
+
+        let message = `Number of items: ${itemCount}\n\n`;
+
+        for (const option of options) {
+          message += `${option.text}\n`;
+        }
+
+        dropdown.classList.add("highlight");
+
+        dropdown.style.color = "navy";
+        dropdown.style.fontFamily = "Arial, sans-serif";
+
+        alert(message);
+      }
+    </script>
+  </body>
+</html>
