@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sphere Volume Calculator</title>
+
+    <style>
+      .calculated {
+        border: 2px solid green;
+        background-color: lightyellow;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form id="sphereForm">
+      <fieldset>
+        <label>Input radius value and get the volume of a sphere</label>
+        <br /><br />
+
+        <label for="radius">Radius</label>
+        <br />
+        <input type="number" id="radius" min="0" step="any" />
+        <br />
+
+        <label for="volume">Volume</label>
+        <br />
+        <input type="text" id="volume" readonly value="0.0000" />
+
+        <br /><br />
+
+        <button type="submit" id="calculateButton">Calculate</button>
+      </fieldset>
+    </form>
+
+    <script>
+      const sphereForm = document.getElementById("sphereForm");
+
+      sphereForm.addEventListener("submit", handleSphereFormSubmit);
+
+      function handleSphereFormSubmit(event) {
+        event.preventDefault();
+
+        const radiusInput = document.getElementById("radius");
+        const volumeInput = document.getElementById("volume");
+
+        const radius = Number(radiusInput.value);
+
+        const volume = (4 / 3) * Math.PI * radius ** 3;
+
+        volumeInput.value = volume.toFixed(4);
+
+        volumeInput.classList.add("calculated");
+
+        volumeInput.style.color = "navy";
+        volumeInput.style.fontFamily = "Arial, sans-serif";
+      }
+    </script>
+  </body>
+</html>
