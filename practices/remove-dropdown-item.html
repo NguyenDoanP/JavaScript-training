@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Remove Items from a Dropdown List</title>
+
+    <style>
+      .updated {
+        border: 2px solid orange;
+        background-color: lightyellow;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form>
+      <select id="colorSelect">
+        <option>Red</option>
+        <option>Green</option>
+        <option>White</option>
+        <option>Black</option>
+      </select>
+
+      <button type="button" id="removeButton">Select and Remove</button>
+    </form>
+
+    <script>
+      const removeButton = document.getElementById("removeButton");
+
+      removeButton.addEventListener("click", handleRemoveButtonClick);
+
+      function handleRemoveButtonClick() {
+        const colorSelect = document.getElementById("colorSelect");
+
+        const selectedIndex = colorSelect.selectedIndex;
+
+        colorSelect.remove(selectedIndex);
+
+        colorSelect.classList.add("updated");
+
+        colorSelect.style.color = "navy";
+        colorSelect.style.fontFamily = "Arial, sans-serif";
+      }
+    </script>
+  </body>
+</html>
