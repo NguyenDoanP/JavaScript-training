@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sign Up Form</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .field {
+        margin-bottom: 20px;
+      }
+
+      .error {
+        color: red;
+        margin-bottom: 5px;
+      }
+
+      .success {
+        margin-top: 20px;
+        border: 1px solid green;
+        background-color: lightgreen;
+        padding: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Sign Up</h1>
+
+    <form id="signupForm">
+      <div class="field">
+        <div class="error" id="usernameError"></div>
+
+        <label for="username"> Username </label>
+
+        <br />
+
+        <input id="username" type="text" />
+      </div>
+
+      <div class="field">
+        <div class="error" id="emailError"></div>
+
+        <label for="email"> Email </label>
+
+        <br />
+
+        <input id="email" type="text" />
+      </div>
+
+      <div class="field">
+        <div class="error" id="passwordError"></div>
+
+        <label for="password"> Password </label>
+
+        <br />
+
+        <input id="password" type="password" />
+      </div>
+
+      <div class="field">
+        <div class="error" id="phoneError"></div>
+
+        <label for="phone"> Phone Number </label>
+
+        <br />
+
+        <input id="phone" type="text" />
+      </div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script src="signup-dom.js"></script>
+  </body>
+</html>
