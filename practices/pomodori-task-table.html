@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Pomodoro Task Table</title>
+
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+
+      td,
+      th {
+        border: 1px solid black;
+        padding: 8px;
+      }
+
+      .finished {
+        background-color: lightgreen;
+      }
+    </style>
+  </head>
+
+  <body>
+    <table id="taskTable">
+      <thead>
+        <tr>
+          <th>Task Name</th>
+          <th>Status (done / planned)</th>
+          <th>Controls</th>
+        </tr>
+      </thead>
+
+      <tbody></tbody>
+    </table>
+
+    <br />
+
+    <form id="taskForm">
+      <input id="taskName" type="text" placeholder="Task Name" required />
+
+      <select id="plannedCount">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      const taskForm = document.getElementById("taskForm");
+      const taskNameInput = document.getElementById("taskName");
+      const plannedCountInput = document.getElementById("plannedCount");
+      const taskTableBody = document.querySelector("#taskTable tbody");
+
+      const handleDeleteButtonClick = (row) => {
+        row.remove();
+      };
+
+      const handleDoneButtonClick = (row) => {
+        row.classList.add("finished");
+
+        const controlsCell = row.children[2];
+
+        controlsCell.innerHTML = `
+          Finished
+          <button type="button" class="deleteButton">
+            Delete Task
+          </button>
+        `;
+
+        controlsCell
+          .querySelector(".deleteButton")
+          .addEventListener("click", () => handleDeleteButtonClick(row));
+      };
+
+      const handleIncreaseButtonClick = (row) => {
+        const statusCell = row.querySelector(".statusCell");
+
+        const [, doneValue, plannedValue] =
+          statusCell.textContent.match(/(\d+) \/ (\d+)/);
+
+        const done = Number(doneValue) + 1;
+        const planned = Number(plannedValue);
+
+        statusCell.textContent = `${done} / ${planned} pomodori`;
+      };
+
+      const addTask = (taskName, plannedCount) => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${taskName}</td>
+
+          <td class="statusCell">
+            0 / ${plannedCount} pomodori
+          </td>
+
+          <td>
+            <button
+              type="button"
+              class="doneButton"
+            >
+              Done
+            </button>
+
+            <button
+              type="button"
+              class="increaseButton"
+            >
+              Increase Pomodoro Count
+            </button>
+
+            <button
+              type="button"
+              class="deleteButton"
+            >
+              Delete Task
+            </button>
+          </td>
+        `;
+
+        taskTableBody.appendChild(row);
+
+        row
+          .querySelector(".doneButton")
+          .addEventListener("click", () => handleDoneButtonClick(row));
+
+        row
+          .querySelector(".increaseButton")
+          .addEventListener("click", () => handleIncreaseButtonClick(row));
+
+        row
+          .querySelector(".deleteButton")
+          .addEventListener("click", () => handleDeleteButtonClick(row));
+      };
+
+      const handleTaskFormSubmit = (event) => {
+        event.preventDefault();
+
+        const taskName = taskNameInput.value.trim();
+
+        if (!taskName) {
+          return;
+        }
+
+        const plannedCount = Number(plannedCountInput.value);
+
+        addTask(taskName, plannedCount);
+
+        taskNameInput.value = "";
+        plannedCountInput.value = "1";
+      };
+
+      taskForm.addEventListener("submit", handleTaskFormSubmit);
+    </script>
+  </body>
+</html>
