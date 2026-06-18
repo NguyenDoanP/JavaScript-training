@@ -1,13 +1,5 @@
 const signupForm = document.getElementById("signupForm");
 
-const usernameInput = document.getElementById("username");
-
-const emailInput = document.getElementById("email");
-
-const passwordInput = document.getElementById("password");
-
-const phoneInput = document.getElementById("phone");
-
 const usernameError = document.getElementById("usernameError");
 
 const emailError = document.getElementById("emailError");
@@ -30,17 +22,15 @@ const handleSignupFormSubmit = (event) => {
 
   clearErrors();
 
-  const username = usernameInput.value.trim();
+  const formData = new FormData(signupForm);
 
-  const email = emailInput.value.trim();
-
-  const password = passwordInput.value.trim();
-
-  const phone = phoneInput.value.trim();
+  const user = Object.fromEntries(
+    [...formData.entries()].map(([key, value]) => [key, value.trim()]),
+  );
 
   let isValid = true;
 
-  if (!username) {
+  if (!user.username) {
     usernameError.textContent = "Username is required";
 
     isValid = false;
@@ -48,23 +38,23 @@ const handleSignupFormSubmit = (event) => {
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!email) {
+  if (!user.email) {
     emailError.textContent = "Email is required";
 
     isValid = false;
-  } else if (!emailRegex.test(email)) {
+  } else if (!emailRegex.test(user.email)) {
     emailError.textContent = "Invalid email format";
 
     isValid = false;
   }
 
-  const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
-  if (!password) {
+  if (!user.password) {
     passwordError.textContent = "Password is required";
 
     isValid = false;
-  } else if (!passwordRegex.test(password)) {
+  } else if (!passwordRegex.test(user.password)) {
     passwordError.textContent =
       "Password must contain at least 8 characters, one uppercase letter, one lowercase letter and one digit";
 
@@ -73,11 +63,11 @@ const handleSignupFormSubmit = (event) => {
 
   const phoneRegex = /^\d{10}$/;
 
-  if (!phone) {
+  if (!user.phone) {
     phoneError.textContent = "Phone number is required";
 
     isValid = false;
-  } else if (!phoneRegex.test(phone)) {
+  } else if (!phoneRegex.test(user.phone)) {
     phoneError.textContent = "Phone number must contain 10 digits";
 
     isValid = false;
@@ -94,19 +84,19 @@ const handleSignupFormSubmit = (event) => {
       <h3>User Information</h3>
 
       <p>
-        Username: ${username}
+        Username: ${user.username}
       </p>
 
       <p>
-        Email: ${email}
+        Email: ${user.email}
       </p>
 
       <p>
-        Password: ${password}
+        Password: ${user.password}
       </p>
 
       <p>
-        Phone Number: ${phone}
+        Phone Number: ${user.phone}
       </p>
     </div>
   `;
